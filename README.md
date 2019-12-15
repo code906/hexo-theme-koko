@@ -1,11 +1,10 @@
-hexo-theme-material-indigo
+hexo-theme-kokoo
 ================
 
 [![Join the chat at https://gitter.im/hexo-theme-indigo/Lobby](https://badges.gitter.im/hexo-theme-indigo/Lobby.svg)](https://gitter.im/hexo-theme-indigo/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Material Design 风格的Hexo主题，基于 Hexo 3.0+ 制作。 [Preview](http://imys.net/)
 
-> 现有两个主题分支，我的博客中使用的是 card 分支卡片风格主题，master 分支是旧版平铺式风格主题。
 
 ## Feature
 
@@ -17,6 +16,9 @@ Material Design 风格的Hexo主题，基于 Hexo 3.0+ 制作。 [Preview](http:
 6. 无前端依赖的分享实现。
 7. 基于静态数据的站内搜索，无第三方侵入。
 8. 支持文章打赏。
+9.加入pjax
+10.增加相册和友链功能
+11.改写分类和归档页面
 
 ## Useage
 
