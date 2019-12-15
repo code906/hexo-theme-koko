@@ -16,9 +16,9 @@ Material Design 风格的Hexo主题，基于 Hexo 3.0+ 制作。 [Preview](http:
 6. 无前端依赖的分享实现。
 7. 基于静态数据的站内搜索，无第三方侵入。
 8. 支持文章打赏。
-9.加入pjax
-10.增加相册和友链功能
-11.改写分类和归档页面
+9.加入pjax  
+10.增加相册和友链功能  
+11.改写分类和归档页面  
 
 ## Useage
 
@@ -30,6 +30,3 @@ Material Design 风格的Hexo主题，基于 Hexo 3.0+ 制作。 [Preview](http:
 
 [ChangeLog](https://github.com/yscoder/hexo-theme-indigo/releases)
 
-## OtherVersion
-
-* [vuepress-theme-indigo](https://github.com/yscoder/vuepress-theme-indigo)
