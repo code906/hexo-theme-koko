@@ -1,0 +1,21 @@
+<footer class="app-footer" style="position: absolute; z-index:0;">
+    <div class="top">
+        
+    </div>
+    <div class="bottom flex-row-wrap app-center flex-justify-end">
+        <p><span><%-config.author %> &copy; <%if (theme.since_year && theme.since_year < date(new Date(), 'YYYY')) {%><%- theme.since_year %> - <%}%><%- date(new Date(), 'YYYY') %></span>
+        <br/>
+        <%- partial('plugins/site-visit') %>
+        <br/>
+        <% if(theme.ICP_license) {%>
+            <div class="github-badge badge-license">
+                <a href="http://www.miitbeian.gov.cn/" target="_blank"><%- theme.ICP_license %></a><br>
+            </div>
+        <% } %>
+        <div class="github-badge">
+            <span class="badge-subject">Theme</span>
+            <span class="badge-value "><a href="<%- theme.theme.link %>"><%- theme.theme.name %></a></span>
+        </div>
+        </p>
+    </div>
+</footer>

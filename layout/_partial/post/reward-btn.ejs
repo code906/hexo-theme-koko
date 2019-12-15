@@ -1,0 +1,9 @@
+<% if(page.reward){ %>
+<div class="reward-position">
+    <a id="rewardBtn" onclick="BLOG.rewardBtn(this)"
+    	href="javascript:;" target="_self" 
+    	class="reward-btn waves-effect btn-circle ">赏
+    </a>
+    <%- partial('_partial/post/reward') %>
+</div>
+<% } %>

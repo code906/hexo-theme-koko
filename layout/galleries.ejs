@@ -1,0 +1,74 @@
+<%- partial('_partial/widget/header', {
+    title: locals.title || theme.galleries_title || 'galleries',
+    type:'content-header'
+}) %>
+
+<%
+	var mkImg,tip,postPhotos,imgUrl,imgArray = [];
+	var regMkImg  = /\!\[.*\]\(.+\)/g,
+		regMkSrc = /(?<=\().*(?=\))/,
+		regMkAlt = /(?<=\!\[).*(?=\])/,
+		regHtmlImg = /(?<=(\<img ))[^>]*(?=(\>))/g,
+		regHtmlSrc = /(?<=(src="))[^"]*(?=(\"))/,
+		regHtmlAt = /(?<=(alt="))[^"]*(?=(\"))/;
+	site.posts.forEach((post,i)=>{
+		var hasFlag = false, tempArray = [];
+		mkImg = null,tip = null,imgUrl = null;
+
+		postPhotos = post.photos.length > 0 ?  post.photos : [];
+		if(postPhotos){
+			hasFlag = true;
+			for(var i=0,len=post.photos.length;i<len;i++){
+					tempArray.push({
+					tip: null,
+					url: postPhotos[i]
+				});
+			}
+		}
+
+		mkImg = post.content.match(regHtmlImg);
+		
+		if(mkImg){ 		
+			if(mkImg[0].match(regHtmlSrc)){
+				imgUrl = mkImg[0].match(regHtmlSrc)[0];
+				hasFlag = true;
+			}
+			if(mkImg[0].match(regHtmlAt)){
+				tip = mkImg[0].match(regHtmlAt)[0];
+			}
+			tempArray.push({
+				tip: tip,
+				url: imgUrl
+			});
+		}
+
+		hasFlag && imgArray.push({
+			postTitle: post.title,
+			postPath: post.path,
+			imgData: tempArray,
+			length: tempArray.length
+		});
+	});
+%>
+
+
+<div class="img-post-wrap flex-row-wrap">
+	<% if(imgArray){ 
+		imgArray.forEach((item,i)=>{
+			for(var j=0,len=item.length;j<len;j++){
+	%>
+		<div class="img-card">
+			<a data-fancybox="gallery" href="<%- item.imgData[j].url %>">
+				<img class="img-card-item flex-justify-center" src="<%- item.imgData[j].url %>" alt="<%- item.imgData[j].tip %>" 
+				title="<%- item.imgData[j].tip %>">
+				
+			</a>
+			<span class="img-msg"><%- item.postTitle%><br/><%- item.imgData[j].tip %></span>
+		</div>
+	<%		
+			}
+		});
+	} 
+	%>
+	
+</div>

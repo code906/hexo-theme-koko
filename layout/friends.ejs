@@ -1,0 +1,35 @@
+<%- partial('_partial/widget/header', {
+    title: locals.title || theme.friends_title || 'friends',
+    type:'content-header'
+}) %>
+
+<div class="friend-warp">
+    <% if (page.links) { %>
+        <div class="links">
+            <% (page.links||[]).forEach(function (group, index) { %>
+                <h3 class="friends-title">
+                    <span class="fake-title"><%- index + 1 %>. <%- group.group %></span>
+                </h3>
+                <% if (group.desc) { %>
+                    <div class="friends-description"><%- group.desc %></div>
+                <% } %>
+        
+                <div class="flex-row-wrap">
+                    <% (group.items||[]).forEach(function (item) { %>
+                        <div class="link-card flex">
+                            <div class="link-img">
+                                <img src="<%- item.img %>" alt="" title="">
+                            </div>
+                            <div class="link-content">
+                                <a href="<%- item.url %>">
+                                    <p class="link-title"><%- item.name %></p>
+                                    <p class="link-description"><%- item.desc %></p>
+                                </a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% }) %>
+        </div>
+    <% } %>
+</div>

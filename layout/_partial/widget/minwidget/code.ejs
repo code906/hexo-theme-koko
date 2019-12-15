@@ -1,0 +1,70 @@
+<textarea id="inputcopy" style="position:absolute;left:0;opacity:0;z-index:-100;" readonly="readonly"></textarea>
+<script>
+//代码折叠，鉴于代码块有pre、table、ul形式标签
+	var html1 = '<div class="code-area-wrap">' +
+		'<span  class="codetitle flex">' +
+		'<span class="code-left" onclick="codeFold(this)">',
+		html2 =  '</span>' +
+		'<span class="code-center"></span>' +
+		'<span class="code-right" onclick="copyText(this)"><i class="fa fa-clipboard" aria-hidden="true"></i></span>' +
+		'</span>';
+
+	var code = document.querySelectorAll('.highlight');
+	var pre = document.querySelectorAll('pre');
+
+	if(code.length>0){
+		code.forEach((item,i)=>{
+			var language = item.className.replace('highlight','');
+			var temp = html1;
+			temp += language;
+			temp += html2;
+			temp += item.outerHTML;
+			temp += '</div>';
+ 			item.outerHTML = temp;
+		});
+	}else if(pre.length>0){
+		pre.forEach((item,i)=>{
+			var m = item.querySelector('code');
+			var language = m.className;
+			var temp = html1;
+			temp += language;
+			temp += html2;
+			temp += item.outerHTML;
+			temp += '</div>';
+ 			item.outerHTML = temp;
+		});
+	}
+
+	function copyText(el){
+		var count = 5;
+		while(!el.classList.contains('code-area-wrap') && count>0){
+			count--;
+			el = el.parentNode;
+		}
+		if(el){
+			var code = el.querySelector('code');
+			var input = document.getElementById("inputcopy");
+			if(input && code){
+				input.value = code.innerText;
+				input.select();
+				document.execCommand("copy");	
+			}
+		}
+	};
+
+	function codeFold(el){
+		var count = 3;
+		while(!el.classList.contains('codetitle') && count>0){
+			count--;
+			el = el.parentNode;
+		}
+		
+		if(el){
+			var pre = el.nextSibling;
+			if(pre.tagName == 'PRE'){
+				pre.classList.toggle('none');
+			}
+		}
+	}
+</script>
+

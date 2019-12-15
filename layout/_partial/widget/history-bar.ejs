@@ -1,0 +1,84 @@
+<%
+if(type === 'archives'){ 
+	var m,y,tempm, tempy,posts=[], archiveJson = [];
+    site.posts.each(function(post){
+        posts.push(post);
+        
+    });
+    var sortPosts = _[_.orderBy ? 'orderBy' : 'sortByOrder'](posts, ['date'], ['desc']);
+
+    sortPosts.forEach(function(post,i){
+       		var jsonItem = {};
+            jsonItem.year = 0; jsonItem.months = [];
+
+            var dt = post.date;
+            var ny = post.date.year();
+            var nm = post.date.month();
+            var mCN = '';
+
+            switch(dt.format('M')){
+                case '1'||'01':
+                    mCN = '一月';
+                    break;
+                case '2'||'02':
+                    mCN = '二月';
+                    break;
+                case '3'||'03':
+                    mCN = '三月';
+                    break;
+                case '4'||'04':
+                    mCN = '四月';
+                    break;
+                case '5'||'05':
+                    mCN = '五月';
+                    break;
+                case '6'||'06':
+                    mCN = '六月';
+                    break;
+                case '7'||'07':
+                    mCN = '七月';
+                    break;
+                case '8'||'08':
+                    mCN = '八月';
+                    break;
+                case '9'||'09':
+                    mCN = '九月';
+                    break;
+                case '10':
+                    mCN = '十月';
+                    break;
+                case '11':
+                    mCN = '十一月';
+                    break;
+                case '12':
+                    mCN = '十二月';
+                    break;
+            }
+
+            tempm = dt.format('M') +'|'+ mCN +'|'+ dt.format('MMM') +'|'+ dt.format('MMMM');
+
+            if(ny !== y || nm !== m) {
+                y = ny;
+                m = nm;
+
+                jsonItem.year = y;
+                jsonItem.months.push(tempm);
+            }
+            
+            if(tempy !== ny){
+                tempy = ny;
+                archiveJson.push(jsonItem);
+            }
+    });
+
+	%>
+	<div class="tabs-bar container" style="background: transparent !important;">
+	    <nav class="tabs-list flex">
+	    	<input id="archivesBarInput"  class="archiveBarinput" type="text" maxlength="8" autocomplete="off" placeholder="请选择" readonly="readonly">
+	    	<a href='' id="archivesBarBtn" class="btn abtn"> GO! </a>
+	    </nav>
+	</div>
+	<script>
+        var ARCHIVE = { DATA: '<%= JSON.stringify(archiveJson) %>' };
+    </script>
+<% } %>

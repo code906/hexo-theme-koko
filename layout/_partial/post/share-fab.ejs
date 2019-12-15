@@ -1,0 +1,10 @@
+<% if(theme.share){ %>
+<div class="bar-share-wrap">
+    <%- partial('share', { scope: 'bar' }) %>
+    <a href="javascript:;" target="_self" id="shareFab" 
+    	onClick = "BLOG.sharePostBtn(this)"
+    	class="bar-share-fab waves-effect btn-circle">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+    </a>
+</div>
+<% } %>

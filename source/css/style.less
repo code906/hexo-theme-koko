@@ -1,0 +1,256 @@
+
+
+
+@dividerColor: #b6b6b6;
+@lightPrimaryColor: #c5cae9;
+@primaryTextColor: #212121;
+@font-size: 14px;
+@backColor: #f0f3f4;
+@primaryColor: #3f51b5;
+@darkPrimaryColor: #303f9f;
+@borderColor: #dadada;
+@font: "Source Sans Pro","Hiragino Sans GB","Microsoft Yahei",SimSun,Helvetica,Arial,Sans-serif,monospace;
+
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 8px;
+    height: 8px;
+
+    &-track {
+        background-color: inherit;
+    }
+    &-thumb {
+        background-color: @dividerColor;
+        border: 1px solid #fff;
+        border-radius: 10px;
+        &:hover {
+            background-color: darken(@dividerColor, 10%)
+        }
+        &:active {
+            background-color: darken(@dividerColor, 20%)
+        }
+    }
+}
+
+::selection {
+    background: lighten(@lightPrimaryColor, 5%);
+}
+
+html {
+    min-width: 180px;
+    background-color: @backColor;
+    color: @primaryTextColor;
+    font-size: @font-size;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+    display:none
+}
+body {
+    width: 100%;
+    height: 100%;
+    overflow:overlay;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none; /*IE 10+*/
+    overflow: -moz-scrollbars-none; /*Firefox*/
+}
+
+html,
+body {
+    position: relative;
+    min-height: 100%;
+        /*height: 100%;*/
+}
+
+.lock {
+    position:fixed;
+    height: 100%;
+    overflow: hidden;
+    /*max-height: 100%;*/
+}
+
+body,
+input,
+button,
+textarea,
+select,
+option {
+    font: normal 1em @font;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+pre,
+dl,
+dd,
+blockquote,
+button,
+input {
+    margin: 0;
+}
+
+input,
+legend,
+input,
+textarea,
+button {
+    padding: 0;
+}
+
+form,
+fieldset,
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+
+ul,li,ol{
+    list-style-type:none;
+    padding: 0;
+    margin: 0;
+}
+
+ol ol,
+ol ul,
+ul ol,
+ul ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+p{
+
+}
+
+small {
+    font-size: 75%;
+    line-height: 1;
+}
+
+i[class~=fa]:before{
+    width: 14px;
+    height: 14px;
+}
+
+main {
+    display: block
+}
+template {
+    display: none
+}
+
+img {
+    max-width: 100%;
+    border: none;
+}
+
+img,
+input,
+button,
+label {
+    vertical-align: middle;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="search"],
+input[type="reset"] {
+    cursor: pointer;
+    -webkit-appearance: button;
+}
+
+input:focus,
+select:focus,
+button:focus,
+textarea:focus {
+    outline: none;
+}
+
+textarea {
+    resize: none;
+}
+
+a {
+    background-color: transparent;
+    background-image: none;
+    color: @primaryColor;
+    text-decoration: none;
+    outline: 0;
+}
+
+a:hover {
+    color: @darkPrimaryColor;
+    text-decoration: none;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.tr {
+    text-align: right;
+}
+
+.tc {
+    text-align: center;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+    overflow: hidden;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.none{
+    display: none !important;
+}
+
+.block{
+    display: block !important;
+}
+
+.inblock{
+    display: inline-block !important;
+}
+
+.pos-absolute{
+    position: absolute !important;
+}
+
+.pos-relative{
+    position: relative !important;
+}
+
+
+
+
+/*@import "_plugin/valine";*/

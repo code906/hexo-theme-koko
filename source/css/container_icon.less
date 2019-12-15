@@ -1,0 +1,148 @@
+//
+@textPrimaryColor: #727272;
+@boxShadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+@navHeight: 40px;
+@menuPadding: 20px;
+@primaryColor: #3f51b5;
+@secondaryTextColor: #727272;
+//
+
+.header-icon{
+    display: block;
+    height: inherit;
+    line-height: inherit;
+    text-align: center;
+    color: #fff;
+}
+
+.avatar {
+  width: 120px;
+  display: table-cell;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: @boxShadow;
+  img {
+    margin: 0 auto;
+    display: block;
+  }
+  a{
+  	display: block;
+  }
+}
+.brand {
+  background-size: 100% 100%;
+  .brand-wrap {
+    position: relative;
+    padding: 10px 30px 2px;
+    text-align: center;
+  }
+}
+
+.brand-seg{
+  position: relative;
+  margin: 10px 0;
+  height: 1px!important;
+  background: #ccc;
+}
+.introduce {
+    margin: 1em 0 0;
+    text-align: center;
+    color: @textPrimaryColor;
+}
+
+.mail {
+    display: inline-block;
+    color: @textPrimaryColor;
+}
+
+.scroll-wrap {
+    position: relative;
+    overflow-y: auto;
+}
+
+.data-item,{
+	padding: 0 15px;
+	text-align: center;
+	color:@textPrimaryColor; 
+}
+.data-item a,.data-item p{
+	color:@textPrimaryColor; 
+}
+
+
+.nav {
+  margin: 0;
+  padding: 0;
+  min-height: calc(100% - 115px);
+  list-style: none;
+  line-height: 20px;
+  li {
+    padding: 0;
+    .icon {
+      position: absolute;
+      top: 0;
+      left: 20px;
+      line-height: inherit;
+    }
+    a {
+      display: block;
+      padding: 10px 10px 10px 30px;
+      line-height: inherit;
+      font-weight: 500;
+      color: @textPrimaryColor;
+      text-decoration: none;
+    }
+  }
+}
+
+.nav li span{
+  position: absolute;
+  padding-left: 30px
+}
+.nav li:hover,
+.nav li.active {
+  background: rgba(0, 0, 0, 0.05);
+}
+.nav li:hover a,
+.nav li.active a,
+.nav li:hover .icon,
+.nav li.active .icon {
+  color: #3f51b5;
+}
+
+
+.github-badge{
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+    border-radius: 200px;
+    -webkit-border-radius: 200px;
+    z-index: 30;
+    /* height: 40px; */
+    /* line-height: 40px; */
+    text-align: center;
+    overflow: hidden;
+    font-size: 0;
+    color: #fff;
+    text-shadow: none;
+    a{
+       color: #fff;
+    }
+}
+.badge-subject{
+  background-color: #4d4d4d;
+  padding: 0 10px;
+  font-size: 16px;
+
+}
+.badge-value{
+  background-color: #ffa500;
+  padding: 0 10px;
+  font-size: 16px;
+}
+.badge-license{
+  background-color: #007ec6;
+  padding: 0 10px;
+  font-size: 16px;
+}

@@ -1,0 +1,40 @@
+<%- partial('_partial/widget/header', {
+    title: page.title,
+    hdClass: 'page-header'
+}) %>
+<%
+    page.reward = 'reward' in page ? (theme.reward && page.reward) : theme.reward;
+    page.slug = 'hexo-page-' + page.path.replace(/\/index\.html$/,'').split('/').join('-');
+%>
+<div  id="pjax-container" class="container body-wrap">
+    <article class="page-article" itemprop="blogPage">
+        <div class="post-content page-content" id="page-content" itemprop="pageContent">
+            <%- page.content.replace(/<p>}<\/p>/g, '</div>')
+                .replace(/<p>@([\w-]+){<\/p>/g, function(match, $1){
+                return '<div class="'+ $1 +'">'
+            }) %>
+        </div>
+
+        <% if(theme.about){ %>
+        <div class="page-about-me flex-row">
+            <span>
+                <a href="/" class="avatar"><%- image_tag(theme.avatar) %></a>
+            </span>
+            <span class="content flex-col">
+                <p><strong><%- config.author %></strong></p>
+                <p><em><%- config.subtitle %></em></p>   
+            </span>
+        </div>
+        <div class="page-about-me flex-row">
+            <span>
+                <p><%- theme.about %></p>
+            </span>
+        </div>
+        <% } %>
+
+        <%- partial('_partial/post/reward-btn') %>
+
+        <%- partial('_partial/post/comment', { post: page }) %>
+    </article>
+    
+</div>

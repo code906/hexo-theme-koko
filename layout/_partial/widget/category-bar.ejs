@@ -1,0 +1,19 @@
+<div class="category-nav">
+	<%
+		var i=0,tempUrl,combUrl='';
+		if(categoryUrl.lastIndexOf('/') == categoryUrl.length -1) categoryUrl = categoryUrl.substring(0,categoryUrl.length -1);
+		if(categoryUrl.indexOf('/') == 0) tempUrl = categoryUrl.substring(1);
+		cateArray = tempUrl.split('/'); 
+
+	%>
+		<ul>
+	<%
+		for(i=0;i<cateArray.length;i++){
+			combUrl += '/' + cateArray[i];
+	%>
+			<li class="category-tab"><a href="<%= combUrl %>"><%= cateArray[i] %></a></li>
+	<%
+		}
+	%>
+		</ul>
+</div>

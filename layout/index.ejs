@@ -1,0 +1,21 @@
+<%- partial('_partial/widget/header', {
+    title: config.title,
+    hdClass: 'index-header'
+}) %>
+<div  id="pjax-container" class="body-wrap" >
+
+    <ul class="post-list flex-row-wrap 
+        flex-justify-center">
+    <% page.posts.each(function(post){ %>
+        <li class="post-list-item ">
+            <%- partial('_partial/widget/index-item', {
+                post: post,
+                index: true
+            }) %>
+        </li>
+    <% }) %>
+    </ul>
+
+    <%- partial('_partial/widget/paginator') %>
+
+</div>

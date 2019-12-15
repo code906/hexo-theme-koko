@@ -1,0 +1,27 @@
+
+<% if(post.categories && post.categories.length){ 
+        var i=0,len=post.categories.length; 
+        var url='/categories/';
+        var parentid;    
+
+        var term = assembleCategoriesUrl(post);
+        term && term.forEach((item,i)=>{
+            var tempUrl = url;
+%>
+            <ul class="article-category-list">
+<%
+            for(var m=0,len=item.depth;m<len;m++){
+                tempUrl += item.sectionArray[m];
+%>
+                <li class="article-category-list-item">
+                    <a href="<%- tempUrl %>"><%- item.sectionArray[m] %></a>
+                </li>
+<%
+            }
+%>
+            </ul>
+<%
+        });
+%>
+
+<% } %>

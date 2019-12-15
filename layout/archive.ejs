@@ -1,0 +1,52 @@
+<%- partial('_partial/widget/header', {
+    title: locals.title || theme.archives_title,
+    hdClass: 'archives-header',
+    type:'content-header'
+}) %>
+
+
+<div  id="pjax-container" class="body-wrap">
+    <ul class="archive-wrap flex-column">
+        <%
+            var posts = [];
+            page.posts.each(function(post){
+                posts.push(post);
+                
+            });
+
+            var sortPosts = _[_.orderBy ? 'orderBy' : 'sortByOrder'](posts, ['date'], ['desc']);
+        %>
+
+        <%
+        var y = 0, m = 0;
+        sortPosts.forEach(function(post, i){
+            var jsonItem = {};
+            jsonItem.year = 0; jsonItem.months = [];
+
+            var dt = post.date;
+            var ny = post.date.year();
+            var nm = post.date.month();
+
+            if(ny !== y || nm !== m) {
+                y = ny;
+                m = nm;
+
+        %>
+                <% if(i > 0){%></ul> <% } %>
+                <% bg = 'archive-bg-' + (i%4) %>
+                <li class="archive-separator">
+                    <label class="archive-bg-<%-(i%4)%> archive-item-header archive-item-borader" for="<%- dt.format('MMMM, YYYY') %>" ><%=dt.format('MMMM, YYYY')%></label>
+                    <input type="checkbox"  id="<%- dt.format('MMMM, YYYY') %>" style="display: none;">
+                
+                 <ul class="timeline">  
+
+        <% } %>
+
+                <%- partial('_partial/widget/archive-item', {post: post, date_format: 'MMM D', bg: bg }) %>
+        <%});%>
+              </ul>
+            </li>     
+                
+    </ul>
+    <%- partial('_partial/widget/paginator') %>
+</div>

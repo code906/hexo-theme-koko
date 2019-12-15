@@ -1,0 +1,101 @@
+<%- partial('_partial/widget/header', {
+    title: locals.title || theme.categories_title || 'categories_title',
+    hdClass: 'categories-header',
+    type:'content-header'
+}) %>
+
+
+<%
+
+%>
+
+<div id="pjax-container" class="body-wrap">
+    <div class="category-wrap">
+
+    <%
+
+
+        if(is_category()) { 
+            var i=0,cateLen=0,term,historyUrlArray=[];
+            var url = (/\/index.[^.]+$/g).test(url_for(page.current_url)) ? (url_for(page.current_url)).replace(/\/[^/]+$/,"")  
+                     : url_for(page.current_url).replace(/\/$/,"");
+            var oUrl = url.replace('/categories','');
+            var urlSegArray = (oUrl.indexOf('/') == 0 ? oUrl.substring(1) : oUrl).split('/');
+            var grade = urlSegArray.length;
+            var cateId = '',cateArray=[];
+            //console.log(url);
+        %>
+
+                <div class="flex-row-wrap">
+                <%- partial('_partial/widget/category-bar', {categoryUrl: url}) %>
+                
+                <% page.posts.each((post) => { 
+                        term = assembleCategoriesUrl(post);
+                        cateId = getCategoriesId(post.categories, {relativeUrl:url, startNode:page.category});
+                        if(cateId != null && cateArray.indexOf(url) < 0){ 
+                            cateArray.push(url); 
+                            //console.log(post.categories);
+                %>
+                            <div class="category-after-nav">
+                            <%- listCategories(site.categories, {depth:0, cateId:cateId}); %>
+
+                            </div>        
+                <%      
+                        }                          
+                        for(i=0;i<term.length;i++){
+                            if(term[i].depth == grade && term[i].categoryUrl == oUrl) {     
+                %>
+                    <%- partial('_partial/widget/category-item', {type: 'post', post: post, date_format: config.date_format}) %> 
+                <% 
+                            }else if(term[i].depth > grade
+                                && term[i].sectionArray[grade-1] == urlSegArray[grade-1]
+                                && historyUrlArray.indexOf(term[i].categoryUrl)<0
+                            ){
+                                historyUrlArray.push(term[i].categoryUrl);
+                                var tail = term[i].sectionArray[grade];
+                                var catePath = url + '/' +term[i].sectionArray[grade]; 
+                %>
+                    <%- partial('_partial/widget/category-item', {type: 'folder', cateName: tail, catePath: catePath}) %>     
+                <%
+                            }
+                        }
+                   });
+
+                %>
+                    <div id="cate-separator" style="order:5; width:90%; margin: 6px; border-bottom:2px dashed #aaa;"></div>
+                    </div>
+                <%
+                }else{
+                    var i,term,historyUrlArray=[];
+                    var url = (/index.[^.]+$/g).test(url_for(page.path)) ? (url_for(page.path)).replace(/[^/]+$/,"")  
+                            : url_for(page.path).replace(/\/$/,"");
+
+                %>
+                    <div class="flex-row-wrap">
+                    <%- partial('_partial/widget/category-bar', {categoryUrl: url}) %>
+                    <div class="category-after-nav">
+                    <%- listCategories(site.categories); %>
+                    </div>
+                <%
+                    site.posts.each((post) => {
+                        term = assembleCategoriesUrl(post);
+                        if(!term || !term.length) return;
+                        //console.log(term);
+                        for(i=0;i<term.length;i++){
+                            
+                            if(term[i].depth>0 && historyUrlArray.indexOf(term[i].sectionArray[0])<0) {
+                                historyUrlArray.push(term[i].sectionArray[0]); 
+                                var catePath = url + term[i].sectionArray[0];
+                %>
+                    <%- partial('_partial/widget/category-item', {type: 'folder', cateName: term[i].sectionArray[0], catePath: catePath}) %>
+                <%          }
+                        }
+                    });    
+                %>  
+
+            </div>
+        <% } %>
+    %>
+    </div>
+    <%- partial('_partial/widget/paginator') %>
+</div>

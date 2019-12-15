@@ -1,0 +1,69 @@
+
+
+<aside id="aside" class="app-aside" <% if((is_post() || page.layout === 'page') && theme.hideMenu){ %>class="hide"<% } %> >
+  <div class="flex-column">
+<!--     <a href="javascript:;" target="_self" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </a> -->
+    <!-- 头像 -->
+    <div class="brand" >
+      <div class="brand-wrap">
+        <avatar>
+          <a href="<%- url_for(theme.avatar_link) %>" >
+            <span class="avatar">
+              <img class="nofancybox" src="<%- url_for(theme.avatar) %>">
+            </span>
+          </a>    
+        </avatar>
+        <hgroup class="introduce">
+          <p class="nickname"><%- config.author %></p>
+          <%- mail_to(theme.email, theme.email, {class: 'mail'}) %>
+        </hgroup>
+      </div>
+      <div class="brand-seg"></div>
+      <post class="flex-row flex-justify-center" style="position:relative; margin:0 auto">
+        <div class="data-item">
+          <a href="<%- url_for(theme.menu.home.url) %>">
+            <p class="headline">文章</p>
+            <p><%- site.posts.length %></p>
+          </a>
+        </div>
+        <div class="data-item">
+          <a href="<%- url_for(theme.menu.tags.url) %>">
+            <p class="headline">标签</p>
+            <p><%- site.tags.length %></p>
+          </a>
+        </div>
+        <div class="data-item">
+          <a href="<%- url_for(theme.menu.categories.url) %>">
+            <p class="headline">分类</p>
+            <p><%- site.categories.length %></p>
+          </a>
+        </div>
+      </post>
+    </div>
+    <div class="brand-seg"></div>
+    <!-- navigation -->
+    <div class="scroll-wrap flex-column">
+      <ul class="nav">
+        <%
+          var menuItem, isActive = function(item) {
+              var pageUrl = url_for(page.path)
+              return item.url === '/' ? pageUrl === url_for(item.url + 'index.html') : _.startsWith(pageUrl, url_for(item.url))
+          };
+          for (var i in theme.menu) {
+            menuItem = theme.menu[i];
+          %>
+            <li class="waves-block waves-effect<% if(isActive(menuItem)){ %> active<% } %>">
+              <a href="<%- url_for(menuItem.url) %>" <% if(menuItem.target){ %>target="_blank"<% } %> >
+                <span><%=(menuItem.text || _.startCase(i)) %></span>
+                <i class="fa <%= menuItem.icon %>" aria-hidden="true"></i>
+              </a>
+            </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+

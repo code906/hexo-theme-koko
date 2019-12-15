@@ -1,0 +1,12 @@
+<%- partial('_partial/widget/header', {
+    title: page.title,
+    hdClass: 'post-header'
+}) %>
+<%
+page.reward = 'reward' in page ? (theme.reward && page.reward) : theme.reward
+%>
+<div  id="pjax-container" class="container body-wrap">
+	<div class="post-table">
+        <%- partial('_partial/post', {post: page }) %>
+    </div>
+</div>

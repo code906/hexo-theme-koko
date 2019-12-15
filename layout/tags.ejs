@@ -1,0 +1,37 @@
+<%- partial('_partial/widget/header', {
+    title: locals.title || theme.tags_title || 'tags',
+    hdClass: 'tags-header',
+    type:'content-header'
+}) %>
+<div  id="pjax-container" class="container body-wrap">
+    <div class="tag-wrap">
+    <%
+        if(is_tag()) { %>
+            <div class="flex-row-wrap">
+          <% page.posts.each(function(post){ %>
+
+            <%- partial('_partial/widget/tag-item', {post: post, date_format: config.date_format}) %>
+
+        <% }) %>
+            </div>
+        <% } else {
+            site.tags.each(function(tag){
+                if(tag.length){
+            %>
+
+            <h3 class="tag-title tag-separator" id="tag-<%=tag.name %>"><%=tag.name %></h3>
+
+            <div class="flex-row-wrap">
+            <% tag.posts.each(function(post){  %>
+
+                <%- partial('_partial/widget/tag-item', {post: post, date_format: config.date_format}) %>
+
+            <% }) %>
+            </div>
+            <% }
+            })
+        }
+    %>
+    </div>
+    <%- partial('_partial/widget/paginator') %>
+</div>

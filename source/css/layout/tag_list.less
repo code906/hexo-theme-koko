@@ -1,0 +1,64 @@
+
+.tag-wrap{
+
+}
+
+.tag-separator:first-child {
+    margin-top: 10px;
+}
+.tag-separator:not(:first-child){
+    border-top: 2px dashed #ccc;
+}
+.tag-item{
+	margin: 10px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 6px;
+}
+.tag-item:hover{
+    border-radius: 6px;
+    box-shadow: 1px 1px 3px 2px rgba(0,0,0,0.2)!important
+}
+.tag-card{
+    height: 100%;
+	padding: 10px 20px;
+	background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(151,151,151,0.58);
+}
+.tag-title{
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 34px;
+    padding: 0 20px;
+}
+.tag-content{
+
+}
+.tag-title-link{
+
+}
+.tag-meta{
+	display: flex;
+    padding: 10px 0;
+    line-height: 14px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #727272;
+    overflow: hidden;
+    >*:not(:first-child) {
+        &:before {
+            content: "·";
+            padding: 0 .5em;
+        }
+    }
+}
+
+.tag-meta-date,
+.tag-meta-categories,
+.tag-meta-tags{
+    display: flex;
+    flex-flow: row wrap;
+    align-items:baseline;
+    line-height: 20px;
+}

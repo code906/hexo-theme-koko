@@ -1,0 +1,19 @@
+  <li class="">
+    <div class="archive-axis">
+        <div class="archive-item-time">
+          <%- partial('../post/date', { post: post, date_format: date_format}) %>
+
+        </div>
+        <!-- title -->
+
+        <div class="archive-item-title archive-item-borader <%- bg %>">
+          <% if (post.link){ %>
+              <span class="item-arrow left" aria-hidden="true"></span>
+              <a class="" href="<%- url_for(post.link) %>" target="_blank" itemprop="url"><%- post.title %></a>
+          <% } else if (post.title){ %>
+              <span class="item-arrow left" aria-hidden="true"></span>
+              <a class="" href="<%- url_for(post.path) %>"><%= post.title %></a>
+          <% } %>
+        </div>
+    </div>
+  </li>

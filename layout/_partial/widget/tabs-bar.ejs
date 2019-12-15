@@ -1,0 +1,45 @@
+<%
+if(type === 'categories' || type === 'tags'){ %>
+<div class="tabs-bar container ">
+    <nav class="tabs-list flex">
+        <a href="<%= url_for('/' + type) %>" style="-webkit-order:-1;order:-1" class="tabs-list-item waves-effect waves-button waves-light
+            <% if(path === type + '/index.html'){%> active<%}%>"><%= __('tag.all') %></a>
+        <%
+            var options = [];
+
+            (type === 'tags' ? site.tags : site.categories).each(function(o) {
+                if(o.posts.length) {
+                    options.push(o)
+                }
+            })
+
+            var index = _.findIndex(options, function(o) {
+                return is_current(o.path)
+            })
+            var len = options.length
+            var order = 0
+            options.forEach(function(tag, i){
+/*注释部分代码，控制显示位置，点击谁，谁优先显示在前面*/                
+/*                if(index <= 1) {
+                    order = i
+                } else {
+
+                    if( i < index - 1) {
+                        order = len - (index - 1) + i
+                    } else {
+                        order = i - (index - 1)
+                    }
+                }*/
+
+            %>
+
+            <a href="<%- url_for(tag.path) %>" style="-webkit-order:<%= order%>;order:<%= order%>" class="tabs-list-item waves-effect waves-button waves-light<% if(is_current(tag.path)){%> active<%}%>"><%-tag.name%></a>
+
+        <% }) %>
+    </nav>
+    <!-- PC show more-->
+    <div class="tabs-list-more">
+        <a href="javascript:;" target="_self" onclick="BLOG.tabBarBtn(this)" class="action tabs-list-item waves-effect waves-circle waves-light"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+    </div>
+</div>
+<% } %>

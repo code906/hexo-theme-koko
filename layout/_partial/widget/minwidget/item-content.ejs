@@ -1,0 +1,25 @@
+
+
+<% if(theme.excerpt_render.enable) { %>
+
+    <% if(!theme.excerpt_render.show_code)
+       var excerpt,content;
+       post.excerpt ?  excerpt = post.excerpt.replace(/(?<=<pre>)[\s\S]*?(?=<\/pre>)/gi,'') :
+                       content = post.content.replace(/(?<=<pre>)[\s\S]*?(?=<\/pre>)/gi,'') ; //提取pre标签内容
+
+        post.excerpt ? excerpt = excerpt.replace(/(?<=<svg>)[\s\S]*?(?=<\/svg>)/gi,'') :
+                       content = content.replace(/(?<=<svg>)[\s\S]*?(?=<\/svg>)/gi,'') ; //提取svg标签内容  
+    %>
+<p class="post-list-article">
+    <%- post.excerpt ? strip_html(excerpt) : truncate(strip_html(content), {
+        length: theme.excerpt_render.length
+    }) %>  
+
+<% } else { %>
+    <%- post.excerpt || post.content %>
+<% } %>
+
+<a href="<%- url_for(post.path) %>" class="post-more waves-effect waves-button">
+    <%= __('post.continue_reading') %>
+</a>
+</p>

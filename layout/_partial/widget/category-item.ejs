@@ -1,0 +1,53 @@
+
+<% if(type == 'folder') {%>
+  <div class="category-folder-item">
+      <div class="category-img">
+        <a href="<%- catePath %>">
+          <img src="/img/folder.png">
+        </a>
+     </div>
+      <% if (cateName) { %>
+        <h3 class="category-title">
+           <a class="category-title-link" href="<%- catePath %>"><%= cateName %></a>
+        </h3>
+      <% } %>
+  </div>
+<% }else if(type == 'post') {%>
+  <div class="category-article-item">
+    <article class="category-card">
+      <!-- post title -->
+      <% if (post.link){ %>
+          <h3 class="category-title">
+             <a class="category-title-link" href="<%- url_for(post.link) %>" target="_blank" itemprop="url"><%- post.title %></a>
+          </h3>
+      <% } else if (post.title){ %>
+          <h3 class="category-title">
+             <a class="category-title-link" href="<%- url_for(post.path) %>"><%= post.title %></a>
+          </h3>
+      <% } %>
+
+      <!-- post-meta -->
+      <div class="tag-meta flex-row-wrap">
+        <time class="tag-meta-date">
+            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+            <%- partial('../post/date', {date_format: config.date_format}) %>
+        </time>
+        <% if(post.categories && post.categories.length){ %>
+            <span class="tag-meta-categories">
+                <i class="fa fa-flag" aria-hidden="true"></i>
+                 <!-- post categories -->
+                 <%- partial('minwidget/item-category',{post:post}) %>
+            </span>
+        <% } %>
+        <% if(post.tags && post.tags.length){ %>
+            <span class="tag-meta-tags">
+                <i class="fa fa-tag" aria-hidden="true"></i>
+                <%- partial('../post/tag') %>
+            </span>
+        <% } %>
+      </div>
+
+    </article>
+  </div>
+<% } %>
+

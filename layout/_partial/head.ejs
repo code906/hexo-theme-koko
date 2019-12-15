@@ -1,0 +1,107 @@
+<head>
+    
+    <%- partial('plugins/google-analytics') %>
+    <%- partial('plugins/tajs') %>
+    <%- partial('plugins/baidu') %>
+    
+    <meta charset="utf-8">
+    <% if(theme.google_site_verification){ %>
+    <meta name="google-site-verification" content="<%- theme.google_site_verification%>">
+    <% }%>
+    <% if(theme.sogou_site_verification){ %>
+    <meta name="sogou_site_verification" content="<%- theme.sogou_site_verification%>">
+    <% }%>
+    <% if(theme.canonical){ %>
+    <link rel="canonical" href="<%- (theme.canonical + url_for(page.path)).replace(/index\.html$/, '') %>">
+    <% }%>
+    <%
+        var title = page.title;
+
+        if (is_archive()){
+            title = theme.archives_title || 'Archives';
+
+            if (is_month()){
+            title += ': ' + page.year + '/' + page.month;
+            } else if (is_year()){
+            title += ': ' + page.year;
+            }
+        } else if (is_category()){
+            title = (theme.categories_title || 'Categories') + ': ' + page.category;
+        } else if (is_tag()){
+            title = (theme.tags_title || 'Tags') + ': ' + page.tag;
+        }
+    %>
+    <title><% if (title){ %><%= title %> | <% } %><%= config.title %><% if (config.subtitle){ %> | <%= config.subtitle %><% } %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <% if(theme.color){ %>
+    <meta name="theme-color" content="<%=theme.color%>">
+    <% } %>
+    <%
+        var keyWords = config.keywords;
+        if(page.tags){
+        keyWords = [];
+
+        _.isArray(page.tags) ? ( keyWords = page.tags )
+            : page.tags.each(function(k){
+                keyWords.push(k.name);
+            });
+    }
+    %>
+    <meta name="keywords" content="<%= keyWords %>">
+    <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+
+    <% if (config.feed && config.feed.path) { %>
+        <link rel="alternate" type="application/atom+xml" title="<%= config.title %>" href="<%- (config.feed.path) %>">
+    <% } %>
+    <%- favicon_tag(theme.favicon) %>
+    <% if(theme.valine.enable){ %>
+        <link rel="stylesheet" href="<%- url_for(theme_css('/css/_plugin/valine')) %>">
+    <% } %>
+    <% if(theme.fancybox){ %>
+        <link rel="stylesheet" href="<%- url_for(theme_css('/lib/css/jquery.fancybox.min')) %>">
+    <% } %>
+    <link rel="stylesheet" href="<%- url_for(theme_css('/fonts/less/font-awesome')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/style')) %>">
+    
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/flex')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/container_button')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/container_icon')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/container')) %>">
+    
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/widget/waves')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/widget/loading')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/layout/about')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/layout/post_list')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/layout/archive_list')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/layout/tag_list')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/layout/category_list')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/layout/tabs_bar')) %>">
+
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/layout/setting_box')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/post/article')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/common_color')) %>">  
+
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/post/share')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/post/reward')) %>">
+
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/search/search_head')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/search/search_box')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/search/search_list')) %>">
+
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/layout/archive_bar')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/layout/gallery_list')) %>">
+    
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/layout/friends_chain')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/layout/dialog')) %>">
+    <link rel="stylesheet" href="<%- url_for(theme_css('/css/post/code_box')) %>">
+
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    <% if (site.data.head) { %>
+        <% for (var i in site.data.head) { %>
+            <%- site.data.head[i] %>
+        <% } %>
+    <% } %>
+
+</head>

@@ -1,0 +1,141 @@
+//
+// tags color
+@tag-color-1: #8bc34a;
+@tag-color-2: #673ab7;
+@tag-color-3: #ff9800;
+@tag-color-4: #f44336;
+@tag-color-5: #00abc0;
+@tag-color-6: #2196f3;
+//
+
+.archive-bg-0 {
+  background-color: #23b7e5;
+  .item-arrow {
+    border-right-color: #23b7e5;
+  }
+}
+.archive-bg-1{
+	background-color: #3a3f51;
+    .item-arrow {
+    border-right-color: #3a3f51;
+  }
+}
+.archive-bg-2{
+	background-color: #27c24c;
+    .item-arrow {
+    border-right-color: #27c24c;
+  }
+}
+.archive-bg-3{
+	background-color: #f05050;
+    .item-arrow {
+    border-right-color: #f05050;
+  }
+}
+.archive-bg-4{
+	background-color: #7266ba;
+    .item-arrow {
+    border-right-color: #7266ba;
+  }
+}
+
+.archive-wrap {
+    margin: 0 0 0 60px;
+    padding: 0;
+    min-width: 150px;
+    float: left;
+    /*text-align:center;*/
+}
+.archive-wrap li label{
+	cursor: pointer;
+}
+.archive-wrap input:checked + ul{
+	display: none;
+}
+.timeline{
+
+}
+.archive-axis:before{
+	position: relative;
+    float: left;
+    top:16px;
+    width: 10px;
+    height: 10px;
+	margin-left: -7px;
+    background: #edf1f2;
+    border-color: inherit;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 50%;
+    content: "";
+    box-shadow: 0 0 0 4px #f0f3f4;
+}
+.archive-axis{
+    padding: 15px 0 15px 0;
+    margin: 0 0 0 100px;
+    border-color: #dee5e7;
+    border-style: solid;
+    border-width: 0 0 0 4px;
+}
+.archive-item-borader{
+	color:#fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05); 
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+
+.archive-separator:first-child {
+    margin-top: 10px;
+}
+.archive-separator:after{
+	content:"";
+	position: relative;
+    display: block;
+    margin-left: 100px;
+    width: 0;
+    height: 20px;
+    border-right: 4px solid #dee5e7;
+}
+.archive-separator:last-child:after{
+    content:"";
+    display: none;
+}
+.archive-item-header{
+	display: inline-block;
+	padding: 10px 20px;
+	margin-left: 50px;
+	text-align: center;
+
+}
+.archive-item-time{
+	position: relative;
+    display: inline-block;
+    float: left;
+    padding: 10px;
+    margin-left: -8em;
+    text-align: right;
+}
+.archive-item-title{
+	display: inline-block;
+	margin: 0 13px;
+	padding: 10px;
+}
+.archive-item-title a{
+    color: #fff;
+}
+.item-arrow{
+	position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    margin-left: -27px;
+    border-style:solid;
+    border-width: 8px;
+}
+.item-arrow.left{
+	border-bottom-color: transparent;
+    border-top-color: transparent;
+    border-left-color: transparent;
+}
